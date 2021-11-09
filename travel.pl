@@ -43,52 +43,68 @@ location(toronto,canada). location(edmonton,canada).
 location(montreal,canada). location(vancouver,canada).
 location(austin,usa). location(chicago,usa).
 location(ny,usa). location(losAngeles,usa).
-location(shanghai,china). location(shanghai,china).
+location(miami,usa).
+location(shanghai,china). location(hongKong,china).
 location(london,uk).
 
 % Lexicon
 
 article(a). article(an). article(the). article(any).
 
-common_noun(flight, X) :- flight(X, _, _, _).
-common_noun(city, X) :- location(X, _).
-common_noun(country, X) :- location(_,X).
+common_noun(flight,X) :- flight(X,From_city,To_city,Departure_time).
+common_noun(city,X) :- location(X, Country).
+common_noun(country,X) :- location(City,X).
 % common_noun(time, X).
+
+adjective(canadian,City) :-  location(City,canada).
+adjective(american,City) :-  location(City,usa).
+adjective(chinese,City) :-  location(City,china).
+% adjective(morning,T).
+% adjective(afternoon,T).
+% adjective(day,T).
+% adjective(evening,T).
+% adjective(international,X).
+% adjective(domestic,X).
+% adjective(long,X).
+% adjective(short,X).
+% adjective(arrival, X).
+% adjective(departure, X).
 
 % preposition(to,X,Y).
 % preposition(from,X,Y).
 % preposition(in,X,Y).
 % preposition(with,X,Y).
+% preposition(between,X,Y).
 
 % proper_noun(toronto).
 
 % Parser 
 
-who(Words, Ref) :- np(Words, Ref).
+what(Words, Ref) :- np(Words, Ref).
 
 % Noun phrase can be a proper name or can start with an article 
 
 np([Name],Name) :- proper_noun(Name).
-np([Art|Rest], Who) :- article(Art), np2(Rest, Who).
+np([Art|Rest], What) :- article(Art), np2(Rest, What).
 
 % If a noun phrase starts with an article, then it must be followed
 % by another noun phrase that starts either with an adjective
 % or with a common noun
 
-np2([Adj|Rest],Who) :- adjective(Adj,Who), np2(Rest, Who).
-np2([Noun|Rest], Who) :- common_noun(Noun, Who), mods(Rest,Who).
+np2([Adj|Rest],What) :- adjective(Adj,What), np2(Rest, What).
+np2([Noun|Rest], What) :- common_noun(Noun, What), mods(Rest,What).
 
 % Modifiers provide an additional specific info about nouns
 % Modifier can be a prepositional phrase followed by none, one or more
 % additional modifiers
 
 mods([], _).
-mods(Words, Who) :-
+mods(Words, What) :-
 	appendLists(Start, End, Words),
-	prepPhrase(Start, Who),	mods(End, Who).
+	prepPhrase(Start, What),	mods(End, What).
 
-prepPhrase([Prep|Rest], Who) :-
-	preposition(Prep, Who, Ref), np(Rest, Ref).
+prepPhrase([Prep|Rest], What) :-
+	preposition(Prep, What, Ref), np(Rest, Ref).
 
 appendLists([], L, L).
 appendLists([H|L1], L2, [H|L3]) :-  appendLists(L1, L2, L3).
