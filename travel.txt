@@ -1,230 +1,70 @@
+Deandra Spike-Madden, 500946801, Section 8
+Thuy Van Hoang, 500949895, Section 6
+Shahzeb Nizam, 500694152, Section 2
 
-(g) - didn't start
-(i) - attempted question but not working. Error somewhere in query
-(k) - didn't start 
+cps721 assignment 4 natural language processing report
 
-%(a) Is there a flight from Toronto to a Canadian city? If yes, retrieve all of them one-by-one.
+Part 1: Queries 
+
+(a) Is there a flight from Toronto to a Canadian city? If yes, retrieve all of them one-by-one.
 ?- flight(F, C, toronto, Y), location(Y, canada).
 F = ac125
 C = airCanada
 Y = montreal
-Yes (0.00s cpu)
-
-%(b) How much time it takes for Air Canada to fly to Los Angeles? 
-%(i.e., is there a flight served by Air Canada? If yes,how much time it takes?)
-?- flight(F, airCanada, X, los_angeles), dtime(F, X, T1), atime(F, los_angeles, T2), T1 \= T2, Time is T2 - T1.
-F = ac021
-X = montreal
-T1 = 715
-T2 = 1320
-Time = 605
-Yes (0.00s cpu)
-
-%(c) What is departure time of the United Airlines flight from Chicago to Toronto?
-?- flight(F, unitedAirlines, X, toronto), dtime(F, X, DepartTime), X = chicago.
-F = ua95
-X = chicago
-DepartTime = 1215
-Yes (0.00s cpu)
-
-%(d) Is there an international flight not from Montreal to a city in UK?
-%(Note: for purposes of this assignment, a flight is domestic if it is between two cities in the same country, and international otherwise.)
-?- flight(F, C, montreal, Y), location(montreal, C1), location(Y, C2), C1 \= C2.
-F = ac021
-C = airCanada
-Y = los_angeles
-C1 = canada
-C2 = austria
-Yes (0.00s cpu)
-
-%(e) Is there an Air Canada domestic flight leaving Edmonton?
-?- flight(F, airCanada, edmonton, Y), location(edmonton, C1), location(Y, C2), C1 = C2.
-F = ac987
-Y = montreal
-C1 = canada
-C2 = canada
-Yes (0.00s cpu)
-
-%(f) What international flight leaves from Toronto and how much time it takes?
-?- flight(F, C, toronto, Y), location(toronto, C1), location(Y, C2), C1 \= C2, dtime(F, toronto, T1), atime(F, Y, T2), T1 \= T2, TimeTaken is T2 - T1.
-F = ac124
-C = airCanada
-Y = shanghai
-C1 = canada
-C2 = china
-T1 = 1305
-T2 = 1810
-TimeTaken = 505
-Yes (0.00s cpu, solution 1, maybe more)
-No (0.13s cpu)
-
-%(g) How much time takes flying from Toronto to Shanghai in case if there is one intermediate stop in Vancouver,
-%each leg has its own flight number, and both legs are served by the same company?
-
-NOT SURE WHAT THIS MEANS --------------------^^^^^
-
-%(h) Is there an international flight leaving Montreal between 6am and 9am and arriving in USA before 4pm?
-?- flight(F, C, montreal, Y), location(montreal, C1), location(Y, C2), C1 \= C2, dtime(F, montreal, T1), (T1 >= 600, T1 =< 900), atime(F, Y, T2), T2 < 1600.
-F = ac021
-C = airCanada
-Y = los_angeles
-C1 = canada
-C2 = usa
-T1 = 715
-T2 = 1320
-Yes (0.00s cpu)
-
-%(i) What is the shortest flight to China from Toronto? (We understand shortest as taking the minimal time. Also, the
-flight that takes time longer than time taken by another flight between same two cities is called below a long
-flight.)
-
-flight(F1,C,toronto,Y1),location(Y1,china),dtime(F1,toronto,T1_F1),atime(F1,Y1,T2_F1),T2_F1\=T1_F1, Time1 is T2_F1-T1_F1, \+(flight(F2,C,toronto,Y2),location(Y2,china),dtime(F2,toronto,T1_F2),atime(F2,Y2,T2_F2),Y1\=Y2, T2_F2\=T1_F2, Time2 is T2_F2-T1_F2, Time1<Time2  )
-^^^^^
-I THINK IT WOULD BE SOMETHING LIKE THIS BUT ITS NOT WORKING FOR ME 
-
-
-%(j) Is there a morning flight from Canada to New York that arrives there before 1pm? (We interpret morning as any
-%time between 5am and 9am, and assume that a morning flight is a flight that departs in the morning. Similarly,
-%day flights are flights that depart from 9am to noon, afternoon flights depart from noon to 5pm, and evening
-%flights depart from 5p to 10pm. You can assume that no flights depart between 10pm and 5am.)
-?- flight(F, C, X, ny), location(X, canada), dtime(F, X, T1), (T1 >= 500, T1 =< 900), atime(F, ny, T2), T2 =< 1300.
-F = ac753
-C = airCanada
-X = edmonton
-T1 = 840
-T2 = 1140
 Yes (0.00s cpu, solution 1, maybe more)
 
-%(k) Are there more than 2 different cities in Canada that can be destinations of flights 
-%departing from Toronto beforenoon?
-
-
-%(l) What are the two different cities in China that are destinations of flights from Canada?
-?- flight(F1, C, X1, Y1), flight(F2, C, X2, Y2), X1 \= X2, location(X1, canada), location(X2, canada), location(Y1, china), location(Y2, china).
-F1 = ac087
-C = airCanada
-... (15 lines left)
-Collapse
-travel.txt
-5 KB
-[1:47 AM] Shahzeb: hey i edited the file a bit since the database would not be able to answer some of the queries further down the assignment
-[1:48 AM] Shahzeb: clone it: https://github.com/Shahzebqazi/cps721-assignment-4.git
-[1:48 AM] Shahzeb: i also started working on the lexicon and added the parser that was given to us in class
-[1:49 AM] Shahzeb: will retest the queries you made and complete the ones we are missing
-[1:49 AM] Shahzeb: then we need to work on completing the lexicon (q2)
-﻿
-%(a) Is there a flight from Toronto to a Canadian city? If yes, retrieve all of them one-by-one.
-?- flight(F, C, toronto, Y), location(Y, canada).
-F = ac125
+F = ac406
 C = airCanada
 Y = montreal
-Yes (0.00s cpu)
-
-%(b) How much time it takes for Air Canada to fly to Los Angeles? 
-%(i.e., is there a flight served by Air Canada? If yes,how much time it takes?)
-?- flight(F, airCanada, X, los_angeles), dtime(F, X, T1), atime(F, los_angeles, T2), T1 \= T2, Time is T2 - T1.
-F = ac021
-X = montreal
-T1 = 715
-T2 = 1320
-Time = 605
-Yes (0.00s cpu)
-
-%(c) What is departure time of the United Airlines flight from Chicago to Toronto?
-?- flight(F, unitedAirlines, X, toronto), dtime(F, X, DepartTime), X = chicago.
-F = ua95
-X = chicago
-DepartTime = 1215
-Yes (0.00s cpu)
-
-%(d) Is there an international flight not from Montreal to a city in UK?
-%(Note: for purposes of this assignment, a flight is domestic if it is between two cities in the same country, and international otherwise.)
-?- flight(F, C, montreal, Y), location(montreal, C1), location(Y, C2), C1 \= C2.
-F = ac021
-C = airCanada
-Y = los_angeles
-C1 = canada
-C2 = austria
-Yes (0.00s cpu)
-
-%(e) Is there an Air Canada domestic flight leaving Edmonton?
-?- flight(F, airCanada, edmonton, Y), location(edmonton, C1), location(Y, C2), C1 = C2.
-F = ac987
-Y = montreal
-C1 = canada
-C2 = canada
-Yes (0.00s cpu)
-
-%(f) What international flight leaves from Toronto and how much time it takes?
-?- flight(F, C, toronto, Y), location(toronto, C1), location(Y, C2), C1 \= C2, dtime(F, toronto, T1), atime(F, Y, T2), T1 \= T2, TimeTaken is T2 - T1.
-F = ac124
-C = airCanada
-Y = shanghai
-C1 = canada
-C2 = china
-T1 = 1305
-T2 = 1810
-TimeTaken = 505
-Yes (0.00s cpu, solution 1, maybe more)
-No (0.13s cpu)
-
-%(g) How much time takes flying from Toronto to Shanghai in case if there is one intermediate stop in Vancouver,
-%each leg has its own flight number, and both legs are served by the same company?
-
-NOT SURE WHAT THIS MEANS --------------------^^^^^
-
-%(h) Is there an international flight leaving Montreal between 6am and 9am and arriving in USA before 4pm?
-?- flight(F, C, montreal, Y), location(montreal, C1), location(Y, C2), C1 \= C2, dtime(F, montreal, T1), (T1 >= 600, T1 =< 900), atime(F, Y, T2), T2 < 1600.
-F = ac021
-C = airCanada
-Y = los_angeles
-C1 = canada
-C2 = usa
-T1 = 715
-T2 = 1320
-Yes (0.00s cpu)
-
-%(i) What is the shortest flight to China from Toronto? (We understand shortest as taking the minimal time. Also, the
-flight that takes time longer than time taken by another flight between same two cities is called below a long
-flight.)
-
-flight(F1,C,toronto,Y1),location(Y1,china),dtime(F1,toronto,T1_F1),atime(F1,Y1,T2_F1),T2_F1\=T1_F1, Time1 is T2_F1-T1_F1, \+(flight(F2,C,toronto,Y2),location(Y2,china),dtime(F2,toronto,T1_F2),atime(F2,Y2,T2_F2),Y1\=Y2, T2_F2\=T1_F2, Time2 is T2_F2-T1_F2, Time1<Time2  )
-^^^^^
-I THINK IT WOULD BE SOMETHING LIKE THIS BUT ITS NOT WORKING FOR ME 
-
-
-%(j) Is there a morning flight from Canada to New York that arrives there before 1pm? (We interpret morning as any
-%time between 5am and 9am, and assume that a morning flight is a flight that departs in the morning. Similarly,
-%day flights are flights that depart from 9am to noon, afternoon flights depart from noon to 5pm, and evening
-%flights depart from 5p to 10pm. You can assume that no flights depart between 10pm and 5am.)
-?- flight(F, C, X, ny), location(X, canada), dtime(F, X, T1), (T1 >= 500, T1 =< 900), atime(F, ny, T2), T2 =< 1300.
-F = ac753
-C = airCanada
-X = edmonton
-T1 = 840
-T2 = 1140
-Yes (0.00s cpu, solution 1, maybe more)
-
-%(k) Are there more than 2 different cities in Canada that can be destinations of flights 
-%departing from Toronto beforenoon?
-
-
-%(l) What are the two different cities in China that are destinations of flights from Canada?
-?- flight(F1, C, X1, Y1), flight(F2, C, X2, Y2), X1 \= X2, location(X1, canada), location(X2, canada), location(Y1, china), location(Y2, china).
-F1 = ac087
-C = airCanada
-X1 = vancouver
-Y1 = shanghai
-F2 = ac124
-X2 = toronto
-Y2 = shanghai
-Yes (0.00s cpu, solution 1, maybe more)
-F1 = ac124
-C = airCanada
-X1 = toronto
-Y1 = shanghai
-F2 = ac087
-X2 = vancouver
-Y2 = shanghai
 Yes (0.00s cpu, solution 2, maybe more)
-No (0.00s cpu)
+
+F = ac128
+C = airCanada
+Y = vancouver
+Yes (0.00s cpu, solution 3, maybe more)
+
+(b) How much time it takes for Air Canada to fly to Los Angeles? 
+(i.e., is there a flight served by Air Canada? If yes,how much time it takes?)
+?- flight(F, unitedAirlines, X, toronto), dtime(F, X, DepartTime), X = chicago.
+F = ua95
+X = chicago
+DepartTime = 1215
+Yes (0.00s cpu)
+
+(c) What is departure time of the United Airlines flight from Chicago to Toronto?
+?- flight(F, unitedAirlines, X, toronto), dtime(F, X, DepartTime), X = chicago.
+F = ua95
+X = chicago
+DepartTime = 1215
+Yes (0.00s cpu)
+
+(d) Is there an international flight not from Montreal to a city in UK?
+(Note: for purposes of this assignment, a flight is domestic if it is between two cities in the same country, and international otherwise.)
+?- flight(F, C, montreal, Y), location(montreal, C1), location(Y, C2), C1 \= C2.
+
+(e) Is there an Air Canada domestic flight leaving Edmonton?
+?- flight(F, airCanada, edmonton, Y), location(edmonton, C1), location(Y, C2), C1 = C2.
+
+(f) What international flight leaves from Toronto and how much time it takes?
+?- flight(F, C, toronto, Y), location(toronto, C1), location(Y, C2), C1 \= C2, dtime(F, toronto, T1), atime(F, Y, T2), T1 \= T2, TimeTaken is T2 - T1.
+
+(g) How much time takes flying from Toronto to Shanghai in case if there is one intermediate stop in Vancouver,
+each leg has its own flight number, and both legs are served by the same company?
+
+(h) Is there an international flight leaving Montreal between 6am and 9am and arriving in USA before 4pm?
+?- flight(F, C, montreal, Y), location(montreal, C1), location(Y, C2), C1 \= C2, dtime(F, montreal, T1), (T1 >= 600, 
+
+(i) What is the shortest flight to China from Toronto?
+?- flight(F1,C,toronto,Y1),location(Y1,china),dtime(F1,toronto,T1_F1),atime(F1,Y1,T2_F1),T2_F1\=T1_F1, Time1 is T2_F1-T1_F1, \+(flight(F2,C,toronto,Y2),location(Y2,china),dtime(F2,toronto,T1_F2),atime(F2,Y2,T2_F2),Y1\=Y2, T2_F2\=T1_F2, Time2 is T2_F2-T1_F2, Time1<Time2  )
+
+(j) Is there a morning flight from Canada to New York that arrives there before 1pm? (We interpret morning as any
+time between 5am and 9am, and assume that a morning flight is a flight that departs in the morning. Similarly,
+day flights are flights that depart from 9am to noon, afternoon flights depart from noon to 5pm, and evening
+flights depart from 5p to 10pm. You can assume that no flights depart between 10pm and 5am.)
+?- flight(F, C, X, ny), location(X, canada), dtime(F, X, T1), (T1 >= 500, T1 =< 900), atime(F, ny, T2), T2 =< 1300.
+
+(k) Are there more than 2 different cities in Canada that can be destinations of flights 
+departing from Toronto beforenoon?
+
+(l) What are the two different cities in China that are destinations of flights from Canada?
+?- flight(F1, C, X1, Y1), flight(F2, C, X2, Y2), X1 \= X2, location(X1, canada), location(X2, canada), location(Y1, china), location(Y2, china).
