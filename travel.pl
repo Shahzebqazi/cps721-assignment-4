@@ -9,8 +9,8 @@
 % flights
 
 flight(aa300,americanAirlines,ny,austin). flight(aa333,americanAirlines,toronto,london).
-flight(ua69,unitedAirlines,ny,miami).flight(ua95,unitedAirlines,chicago,toronto).
-flight(ua96,unitedAirlines,toronto,chicago).flight(ua99,unitedAirlines,chicago,ny).
+flight(ua69,unitedAirlines,ny,miami). flight(ua95,unitedAirlines,chicago,toronto).
+flight(ua96,unitedAirlines,toronto,chicago). flight(ua99,unitedAirlines,chicago,ny).
 flight(ac987,airCanada,edmonton,montreal). 
 flight(ac900,airCanada,montreal,miami).
 flight(ac125,airCanada,toronto,montreal). flight(ac406,airCanada,toronto,montreal).
@@ -20,22 +20,39 @@ flight(ac087,airCanada,vancouver,shanghai). flight(ac349,airCanada,vancouver,lon
 
 % departure and arrival times
 
-dtime(aa300,ny,1200). atime(aa300,austin,1600).
-dtime(aa333,toronto,1230). atime(aa333,london,2100).
-dtime(ua69,ny,1500). atime(ua69,miami,1900).
-dtime(ua95,chicago,1215). atime(ua95,toronto,1330).
-dtime(ua96,toronto,1515). atime(ua96,chicago,1630).
-dtime(ua99,chicago,1100). atime(ua99,ny,1330).
-dtime(ac987,edmonton,1130). atime(ac987,montreal,1645).
-dtime(ac900,montreal,0800). atime(ac900,miami,1200).
-dtime(ac021,toronto,0715). atime(ac021,losAngeles,1320).
-dtime(ac783,toronto,1400). atime(ac783,losAngeles,2000).
-dtime(ac125,toronto,1125). atime(ac125,montreal,1350).
-dtime(ac406,toronto,1000). atime(ac406,montreal,1115).  
-dtime(ac128,toronto,1400). atime(ac128,vancouver,1800). 
-dtime(ac999,toronto,0100). atime(ac999,hongKong,1600). 
-dtime(ac087,vancouver,1300). atime(ac087,shanghai,2300).
-dtime(ac349,vancouver,0900). atime(ac349,london,1820).
+dtime(aa300,ny,1200). 
+dtime(aa333,toronto,1230). 
+dtime(ua69,ny,1500). 
+dtime(ua95,chicago,1215). 
+dtime(ua96,toronto,1515). 
+dtime(ua99,chicago,1100). 
+dtime(ac987,edmonton,1130). 
+dtime(ac900,montreal,0800). 
+dtime(ac021,toronto,0715). 
+dtime(ac783,toronto,1400). 
+dtime(ac125,toronto,1125). 
+dtime(ac406,toronto,1000).   
+dtime(ac128,toronto,1400). 
+dtime(ac999,toronto,0100). 
+dtime(ac087,vancouver,1300). 
+dtime(ac349,vancouver,0900).
+
+atime(aa300,austin,1600).
+atime(aa333,london,2100).
+atime(ua69,miami,1900).
+atime(ua95,toronto,1330).
+atime(ua96,chicago,1630).
+atime(ua99,ny,1330).
+atime(ac987,montreal,1645).
+atime(ac900,miami,1200).
+atime(ac021,losAngeles,1320).
+atime(ac783,losAngeles,2000).
+atime(ac125,montreal,1350).
+atime(ac406,montreal,1115).
+atime(ac128,vancouver,1800). 
+atime(ac999,hongKong,1600). 
+atime(ac087,shanghai,2300).
+atime(ac349,london,1820).
 
 % locations
 
