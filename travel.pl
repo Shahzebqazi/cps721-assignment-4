@@ -8,15 +8,16 @@
 
 % flights
 
-flight(aa300,americanAirlines,ny,austin). flight(aa333,americanAirlines,toronto,london).
-flight(ua69,unitedAirlines,ny,miami). flight(ua95,unitedAirlines,chicago,toronto).
-flight(ua96,unitedAirlines,toronto,chicago). flight(ua99,unitedAirlines,chicago,ny).
+flight(aa300,americanAirlines,ny,austin).flight(aa333,americanAirlines,toronto,london).
+flight(ua69,unitedAirlines,ny,miami).flight(ua95,unitedAirlines,chicago,toronto).
+flight(ua96,unitedAirlines,toronto,chicago).flight(ua99,unitedAirlines,chicago,ny).
 flight(ac987,airCanada,edmonton,montreal). 
 flight(ac900,airCanada,montreal,miami).
-flight(ac125,airCanada,toronto,montreal). flight(ac406,airCanada,toronto,montreal).
-flight(ac021,airCanada,toronto,losAngeles). flight(ac783,airCanada,toronto,losAngeles).
-flight(ac128,airCanada,toronto,vancouver). flight(ac999,airCanada,toronto,hongKong).
-flight(ac087,airCanada,vancouver,shanghai). flight(ac349,airCanada,vancouver,london).
+flight(ac125,airCanada,toronto,montreal).flight(ac406,airCanada,toronto,montreal).
+flight(ac021,airCanada,toronto,losAngeles).flight(ac783,airCanada,toronto,losAngeles).
+flight(ac128,airCanada,toronto,vancouver).flight(ac999,airCanada,toronto,hongKong).
+flight(ac087,airCanada,vancouver,shanghai).flight(ac349,airCanada,vancouver,london).
+flight(ac991,airCanada,toronto,shanghai).
 
 % departure and arrival times
 
@@ -36,6 +37,7 @@ dtime(ac128,toronto,1400).
 dtime(ac999,toronto,0100). 
 dtime(ac087,vancouver,1300). 
 dtime(ac349,vancouver,0900).
+dtime(ac991,toronto,0200). 
 
 atime(aa300,austin,1600).
 atime(aa333,london,2100).
@@ -53,20 +55,21 @@ atime(ac128,vancouver,1800).
 atime(ac999,hongKong,1600). 
 atime(ac087,shanghai,2300).
 atime(ac349,london,1820).
+atime(ac991,shanghai,1500).
 
 % locations
 
-location(toronto,canada). location(edmonton,canada). 
-location(montreal,canada). location(vancouver,canada).
-location(austin,usa). location(chicago,usa).
-location(ny,usa). location(losAngeles,usa).
+location(toronto,canada).location(edmonton,canada). 
+location(montreal,canada).location(vancouver,canada).
+location(austin,usa).location(chicago,usa).
+location(ny,usa).location(losAngeles,usa).
 location(miami,usa).
-location(shanghai,china). location(hongKong,china).
+location(shanghai,china).location(hongKong,china).
 location(london,uk).
 
 % Lexicon
 
-article(a). article(an). article(the). article(any).
+article(a).article(an).article(the).article(any).
 
 common_noun(flight,X) :- flight(X,From_city,To_city,Departure_time).
 common_noun(city,X) :- location(X, Country).
