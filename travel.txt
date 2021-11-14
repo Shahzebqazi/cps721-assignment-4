@@ -20,6 +20,7 @@ F = ac128
 C = airCanada
 Y = vancouver
 Yes (0.00s cpu, solution 3, maybe more)
+No (0.00s cpu)
 
 (b) How much time it takes for Air Canada to fly to Los Angeles? 
 (i.e., is there a flight served by Air Canada? If yes,how much time it takes?)
@@ -127,3 +128,20 @@ departing from Toronto beforenoon?
 
 (l) What are the two different cities in China that are destinations of flights from Canada?
 ?- flight(F1, C, X1, Y1), flight(F2, C, X2, Y2), X1 \= X2, location(X1, canada), location(X2, canada), location(Y1, china), location(Y2, china).
+F1 = ac999
+C = airCanada
+X1 = toronto
+Y1 = hongKong
+F2 = ac087
+X2 = vancouver
+Y2 = shanghai
+Yes (0.00s cpu, solution 1, maybe more)
+F1 = ac087
+C = airCanada
+X1 = vancouver
+Y1 = shanghai
+F2 = ac999
+X2 = toronto
+Y2 = hongKong
+Yes (0.00s cpu, solution 2, maybe more)
+No (0.00s cpu)
