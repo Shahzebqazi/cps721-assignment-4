@@ -12,12 +12,10 @@ F = ac125
 C = airCanada
 Y = montreal
 Yes (0.00s cpu, solution 1, maybe more)
-
 F = ac406
 C = airCanada
 Y = montreal
 Yes (0.00s cpu, solution 2, maybe more)
-
 F = ac128
 C = airCanada
 Y = vancouver
@@ -25,7 +23,7 @@ Yes (0.00s cpu, solution 3, maybe more)
 
 (b) How much time it takes for Air Canada to fly to Los Angeles? 
 (i.e., is there a flight served by Air Canada? If yes,how much time it takes?)
-?- flight(F, unitedAirlines, X, toronto), dtime(F, X, DepartTime), X = chicago.
+?- flight(F, airCanada, X, losAngeles), dtime(F, X, DepartTime), atime(F, losAngeles, ArriveTime), D is ArriveTime - DepartTime.
 F = ua95
 X = chicago
 DepartTime = 1215
@@ -40,13 +38,75 @@ Yes (0.00s cpu)
 
 (d) Is there an international flight not from Montreal to a city in UK?
 (Note: for purposes of this assignment, a flight is domestic if it is between two cities in the same country, and international otherwise.)
-?- flight(F, C, montreal, Y), location(montreal, C1), location(Y, C2), C1 \= C2.
+?- flight(F, C, X, Y), not X = montreal, location(Y, uk).
+F = aa333
+C = americanAirlines
+X = toronto
+Y = london
+Yes (0.00s cpu, solution 1, maybe more)
+F = ac349
+C = airCanada
+X = vancouver
+Y = london
+Yes (0.00s cpu, solution 2)
+
 
 (e) Is there an Air Canada domestic flight leaving Edmonton?
 ?- flight(F, airCanada, edmonton, Y), location(edmonton, C1), location(Y, C2), C1 = C2.
+F = ac987
+Y = montreal
+C1 = canada
+C2 = canada
+Yes (0.00s cpu)
 
 (f) What international flight leaves from Toronto and how much time it takes?
 ?- flight(F, C, toronto, Y), location(toronto, C1), location(Y, C2), C1 \= C2, dtime(F, toronto, T1), atime(F, Y, T2), T1 \= T2, TimeTaken is T2 - T1.
+F = aa333
+C = americanAirlines
+Y = london
+C1 = canada
+C2 = uk
+T1 = 1230
+T2 = 2100
+TimeTaken = 870
+Yes (0.00s cpu, solution 1, maybe more)
+F = ua96
+C = unitedAirlines
+Y = chicago
+C1 = canada
+C2 = usa
+T1 = 1515
+T2 = 1630
+TimeTaken = 115
+Yes (0.00s cpu, solution 2, maybe more)
+F = ac021
+C = airCanada
+Y = losAngeles
+C1 = canada
+C2 = usa
+T1 = 715
+T2 = 1320
+TimeTaken = 605
+Yes (0.00s cpu, solution 3, maybe more)
+F = ac783
+C = airCanada
+Y = losAngeles
+C1 = canada
+C2 = usa
+T1 = 1400
+T2 = 2000
+TimeTaken = 600
+Yes (0.00s cpu, solution 4, maybe more)
+F = ac999
+C = airCanada
+Y = hongKong
+C1 = canada
+C2 = china
+T1 = 100
+T2 = 1600
+TimeTaken = 1500
+Yes (0.00s cpu, solution 5)
+
 
 (g) How much time takes flying from Toronto to Shanghai in case if there is one intermediate stop in Vancouver,
 each leg has its own flight number, and both legs are served by the same company?
