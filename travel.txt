@@ -23,7 +23,7 @@ Yes (0.00s cpu, solution 3, maybe more)
 
 (b) How much time it takes for Air Canada to fly to Los Angeles? 
 (i.e., is there a flight served by Air Canada? If yes,how much time it takes?)
-?- flight(F, airCanada, X, losAngeles), dtime(F, X, DepartTime), atime(F, losAngeles, ArriveTime), D is ArriveTime - DepartTime.
+?- flight(F, airCanada, X, losAngeles), dtime(F, X, DepartTime), atime(F, losAngeles, ArriveTime), TimeTaken is ArriveTime - DepartTime.
 F = ua95
 X = chicago
 DepartTime = 1215
