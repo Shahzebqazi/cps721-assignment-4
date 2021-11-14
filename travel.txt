@@ -24,13 +24,21 @@ Yes (0.00s cpu, solution 3, maybe more)
 (b) How much time it takes for Air Canada to fly to Los Angeles? 
 (i.e., is there a flight served by Air Canada? If yes,how much time it takes?)
 ?- flight(F, airCanada, X, losAngeles), dtime(F, X, DepartTime), atime(F, losAngeles, ArriveTime), TimeTaken is ArriveTime - DepartTime.
-F = ua95
-X = chicago
-DepartTime = 1215
-Yes (0.00s cpu)
+F = ac021
+X = toronto
+DepartTime = 715
+ArriveTime = 1320
+TimeTaken = 605
+Yes (0.00s cpu, solution 1, maybe more)
+F = ac783
+X = toronto
+DepartTime = 1400
+ArriveTime = 2000
+TimeTaken = 600
+Yes (0.00s cpu, solution 2)
 
 (c) What is departure time of the United Airlines flight from Chicago to Toronto?
-?- flight(F, unitedAirlines, X, toronto), dtime(F, X, DepartTime), X = chicago.
+?- flight(F, unitedAirlines, X, toronto), dtime(F, chicago, DepartTime).
 F = ua95
 X = chicago
 DepartTime = 1215
@@ -52,11 +60,9 @@ Yes (0.00s cpu, solution 2)
 
 
 (e) Is there an Air Canada domestic flight leaving Edmonton?
-?- flight(F, airCanada, edmonton, Y), location(edmonton, C1), location(Y, C2), C1 = C2.
+?- flight(F, airCanada, edmonton, Y), location(Y,canada).
 F = ac987
 Y = montreal
-C1 = canada
-C2 = canada
 Yes (0.00s cpu)
 
 (f) What international flight leaves from Toronto and how much time it takes?
